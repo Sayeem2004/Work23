@@ -8,7 +8,7 @@ void print_error(int err, char *msg) {
     }
 }
 
-int server_handshake() {
+int server_setup() {
     // Setting Up Hints Struct
     struct addrinfo *hints;
     hints = calloc(1, sizeof(struct addrinfo));
@@ -45,11 +45,20 @@ int server_handshake() {
         return -1;
     } else printf("Server: Successfully Set Up Listen");
 
-    // Accepting Socket
+    // Exiting Function
+    free(hints);
+    freeaddrinfo(results);
+    return listen_socket;
+}
+
+int server_handshake(int listen_socket) {
+    // Variable Declarations
     int client_socket;
     socklen_t sock_size;
     struct sockaddr_storage client_address;
     sock_size = sizeof(client_address);
+
+    // Accepting Connection
     client_socket = accept(listen_socket, (struct sockaddr *)&client_address, &sock_size);
     if (client_socket == -1) {
         print_error(-1, "Server: Unable To Accept Connection");
@@ -57,8 +66,6 @@ int server_handshake() {
     } else printf("Server: Successfully Accepted Connection");
 
     // Exiting Function
-    free(hints);
-    freeaddrinfo(results);
     return client_socket;
 }
 
