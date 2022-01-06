@@ -100,7 +100,7 @@ int main() {
             print_error(-1, "Server: Unable To Fork Sub-Process");
         } else { // Parent Process
             // Resetting Handshake
-            reset_server_handshake(client_socket);
+            server_reset(client_socket);
         }
     }
 
