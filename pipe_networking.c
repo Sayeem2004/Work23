@@ -69,7 +69,7 @@ int server_handshake(int listen_socket) {
     return client_socket;
 }
 
-void reset_server_handshake(int client_socket) {
+void server_reset(int client_socket) {
     // Closing Socket
     int err = close(client_socket);
     if (err == -1) {
