@@ -10,7 +10,7 @@ void client_exit() {
     if (err == -1) {
         print_error(-1, "Client: Unable To Close Server Socket");
         return;
-    } else printf("Client: Successfully Closed Server Socket");
+    } else printf("Client: Successfully Closed Server Socket\n");
 
     // Exiting Function
     free(buff);

@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <ctype.h>
 #include <netdb.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>

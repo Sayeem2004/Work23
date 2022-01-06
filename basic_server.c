@@ -2,7 +2,7 @@
 
 // Variable Declarations
 char *buff;
-int client_socket, frk;
+int client_socket, listen_socket, frk;
 
 void server_exit() {
     if (frk == 0) { // Child
@@ -10,8 +10,9 @@ void server_exit() {
         int err = close(client_socket);
         if (err == -1) {
             print_error(-1, "Sub-Server: Unable To Close Client Socket");
-            return;
-        } else printf("Sub-Server: Successfully Closed Client Socket");
+            free(buff);
+            exit(-1);
+        } else printf("Sub-Server: Successfully Closed Client Socket\n");
 
         // Exiting Function
         free(buff);
@@ -19,11 +20,12 @@ void server_exit() {
         exit(0);
     } else { // Parent
         // Closing Socket
-        int err = close(client_socket);
+        int err = close(listen_socket);
         if (err == -1) {
             print_error(-1, "Server: Unable To Close Client Socket");
-            return;
-        } else printf("Server: Successfully Closed Client Socket");
+            free(buff);
+            exit(-1);
+        } else printf("Server: Successfully Closed Client Socket\n");
 
         // Exiting Function
         free(buff);
@@ -61,7 +63,7 @@ int main() {
         // Starting Handshake
         client_socket = server_handshake(listen_socket);
         if (client_socket == -1) {
-            reset_server_handshake(client_socket);
+            server_reset(client_socket);
             continue;
         }
 

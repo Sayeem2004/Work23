@@ -22,28 +22,28 @@ int server_setup() {
     if (err1 == -1) {
         print_error(-1, "Server: Unable To Get IP Information");
         return -1;
-    } else printf("Server: Successfully Got IP Information");
+    } else printf("Server: Successfully Got IP Information\n");
 
     // Create Socket
     int listen_socket = socket(results->ai_family, results->ai_socktype, results->ai_protocol);
     if (listen_socket == -1) {
         print_error(-1, "Server: Unable To Create Socket");
         return -1;
-    } else printf("Server: Successfully Created Socket");
+    } else printf("Server: Successfully Created Socket\n");
 
     // Binding Socket
     int err2 = bind(listen_socket, results->ai_addr, results->ai_addrlen);
     if (err2 == -1) {
         print_error(-1, "Server: Unable To Bind Socket");
         return -1;
-    } else printf("Server: Successfully Binded Socket");
+    } else printf("Server: Successfully Binded Socket\n");
 
     // Setting Up Listen
     int err3 = listen(listen_socket, 10);
     if (err3 == -1) {
         print_error(-1, "Server: Unable To Set Up Listen");
         return -1;
-    } else printf("Server: Successfully Set Up Listen");
+    } else printf("Server: Successfully Set Up Listen\n");
 
     // Exiting Function
     free(hints);
@@ -63,7 +63,7 @@ int server_handshake(int listen_socket) {
     if (client_socket == -1) {
         print_error(-1, "Server: Unable To Accept Connection");
         return -1;
-    } else printf("Server: Successfully Accepted Connection");
+    } else printf("Server: Successfully Accepted Connection\n");
 
     // Exiting Function
     return client_socket;
@@ -75,7 +75,7 @@ void server_reset(int client_socket) {
     if (err == -1) {
         print_error(-1, "Server: Unable To Reset Client Socket");
         return;
-    } else printf("Server: Successfully Reset Client Socket");
+    } else printf("Server: Successfully Reset Client Socket\n");
 
     // Exiting Function
     return;
@@ -94,21 +94,21 @@ int client_handshake() {
     if (err1 == -1) {
         print_error(-1, "Client: Unable To Get IP Information");
         return -1;
-    } else printf("Client: Successfully Got IP Information");
+    } else printf("Client: Successfully Got IP Information\n");
 
     // Create Socket
     int server_socket = socket(results->ai_family, results->ai_socktype, results->ai_protocol);
     if (server_socket == -1) {
         print_error(-1, "Client: Unable To Create Socket");
         return -1;
-    } else printf("Client: Successfully Created Socket");
+    } else printf("Client: Successfully Created Socket\n");
 
     // Connecting To Server
     int err2 = connect(server_socket, results->ai_addr, results->ai_addrlen);
     if (err2 == -1) {
         print_error(-1, "Client: Unable To Connect To Server");
         return -1;
-    } printf("Client: Successfully Connected To Server");
+    } printf("Client: Successfully Connected To Server\n");
 
     // Exiting Function
     free(hints);
