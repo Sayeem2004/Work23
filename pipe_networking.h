@@ -16,8 +16,9 @@
 #define BUFFER_SIZE 1000
 
 void print_error(int err, char *msg);
-int server_handshake();
-void reset_server_handshake(int client_socket);
+int server_setup();
+int server_handshake(int listen_socket);
+void server_reset(int client_socket);
 int client_handshake();
 
 #endif
