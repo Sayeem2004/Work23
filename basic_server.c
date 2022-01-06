@@ -50,10 +50,16 @@ int main() {
     // Initializing Buffer
     buff = calloc(BUFFER_SIZE, sizeof(char));
 
+    // Initializing Server Socket
+    listen_socket = server_setup();
+    if (listen_socket == -1) {
+        return -1;
+    }
+
     // Persistent Process
     while (1) {
         // Starting Handshake
-        client_socket = server_handshake();
+        client_socket = server_handshake(listen_socket);
         if (client_socket == -1) {
             reset_server_handshake(client_socket);
             continue;
