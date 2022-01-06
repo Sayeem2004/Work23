@@ -22,10 +22,10 @@ void server_exit() {
         // Closing Socket
         int err = close(listen_socket);
         if (err == -1) {
-            print_error(-1, "Server: Unable To Close Client Socket");
+            print_error(-1, "Server: Unable To Close Listen Socket");
             free(buff);
             exit(-1);
-        } else printf("Server: Successfully Closed Client Socket\n");
+        } else printf("Server: Successfully Closed Listen Socket\n");
 
         // Exiting Function
         free(buff);
@@ -38,6 +38,7 @@ static void sighandler(int signo) {
     // SIGINT Case
     if (signo == SIGINT) {
         // Exiting Normally
+        printf("\n");
         server_exit();
     }
 

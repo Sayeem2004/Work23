@@ -22,6 +22,7 @@ static void sighandler(int signo) {
     // SIGINT Case
     if (signo == SIGINT) {
         // Exiting Function
+        printf("\n");
         client_exit();
     }
 
