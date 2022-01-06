@@ -15,6 +15,8 @@
 
 #define NETWORKING_H
 #define BUFFER_SIZE 1000
+#define PORT "9845"
+#define IP "127.0.0.1"
 
 void print_error(int err, char *msg);
 int server_setup();

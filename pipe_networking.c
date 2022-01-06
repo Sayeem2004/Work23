@@ -18,7 +18,7 @@ int server_setup() {
 
     // Getting IP Information
     struct addrinfo *results;
-    int err1 = getaddrinfo(NULL, "9845", hints, &results);  // Server Sets Node To NULL
+    int err1 = getaddrinfo(NULL, PORT, hints, &results);  // Server Sets Node To NULL
     if (err1 == -1) {
         print_error(-1, "Server: Unable To Get IP Information");
         return -1;
@@ -90,7 +90,7 @@ int client_handshake() {
 
     // Getting IP Information
     struct addrinfo *results;
-    int err1 = getaddrinfo("127.0.0.1", "9845", hints, &results);
+    int err1 = getaddrinfo(IP, PORT, hints, &results);
     if (err1 == -1) {
         print_error(-1, "Client: Unable To Get IP Information");
         return -1;
